@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Architect at work</title>
+  <desc id="desc">A locally stored architectural illustration of a designer reviewing building plans at a studio table.</desc>
+  <defs>
+    <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#e8e7df"/><stop offset="1" stop-color="#c9d0c8"/></linearGradient>
+    <linearGradient id="table" x2="0" y2="1"><stop stop-color="#9b7655"/><stop offset="1" stop-color="#68503d"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#668171" stroke-opacity=".28" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1200" height="760" fill="url(#wall)"/><rect x="70" y="54" width="378" height="300" rx="5" fill="#dbe5e2"/><path d="M259 54v300M70 204h378" stroke="#f7f6f0" stroke-width="13"/><path d="M86 337 172 208l69 73 73-104 118 160" fill="#b3c4b6" opacity=".7"/>
+  <rect x="500" y="90" width="620" height="285" rx="8" fill="#f5f2e8" stroke="#9aa69c" stroke-width="3"/><rect x="520" y="110" width="580" height="245" fill="url(#grid)"/><path d="m578 300 120-112 113 45 86-78 149 130" fill="none" stroke="#526e5c" stroke-width="8"/><path d="M612 320v-95h68v95m118-86v-53h63v123m64-104v-52h95v161" fill="none" stroke="#8d6d4f" stroke-width="5"/>
+  <path d="M0 516h1200v244H0z" fill="url(#table)"/><path d="M85 760 158 506M1078 760l-61-254" stroke="#493a31" stroke-width="28"/>
+  <path d="M194 543 443 414l199 101-251 132z" fill="#fffdf6" stroke="#d2c7b7" stroke-width="6"/><path d="m231 536 214-110m-174 137 213-109m-170 139 213-110m-171 137 214-110" stroke="#688271" stroke-width="3" opacity=".75"/><path d="m277 549 43 23 52-31 45 23 50-28" fill="none" stroke="#bd8b5a" stroke-width="4"/>
+  <path d="M733 520c-2-108 27-163 95-168 66-5 93 58 73 165z" fill="#546b5c"/><path d="M785 371c-3-52 25-84 68-83 41 1 61 34 52 82l-31 59h-59z" fill="#c68e69"/><path d="M777 351c4-64 40-96 92-82 35 10 47 39 37 73l-40-25-52 17-26 43z" fill="#343d38"/><path d="m752 506 63-90 94 3 67 97" fill="#687f6d"/><path d="M809 437 700 516l-84 16" fill="none" stroke="#c68e69" stroke-width="24" stroke-linecap="round"/><path d="M885 434 939 501l-34 41" fill="none" stroke="#c68e69" stroke-width="22" stroke-linecap="round"/><circle cx="617" cy="534" r="15" fill="#454a42"/><path d="m906 547 72-66" stroke="#d4a363" stroke-width="12" stroke-linecap="round"/>
+  <rect width="1200" height="760" fill="#183129" opacity=".06"/>
+</svg>
