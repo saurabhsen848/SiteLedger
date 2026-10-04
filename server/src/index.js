@@ -18,8 +18,9 @@ const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
 app.use(express.json({ limit: '3mb' }));
 const root = path.dirname(fileURLToPath(import.meta.url));
-const uploadDir = path.join(root, '../uploads'); fs.mkdirSync(uploadDir, { recursive: true });
+const uploadDir = process.env.VERCEL ? path.join('/tmp', 'siteledger-uploads') : path.join(root, '../uploads'); fs.mkdirSync(uploadDir, { recursive: true });
 app.use('/uploads', express.static(uploadDir));
+if (process.env.VERCEL) app.use('/api/uploads', express.static(uploadDir));
 const upload = multer({ dest: uploadDir, limits: { fileSize: 8 * 1024 * 1024 } });
 
 app.post('/api/auth/register', async (req, res) => {
@@ -82,4 +83,17 @@ app.get('/api/reports/:type.csv', asyncRoute(async (req,res) => {
 }));
 app.get('/api/health', (req,res)=>res.json({ ok:true }));
 app.use((err,req,res,next)=>{ console.error(err); res.status(err.status || 400).json({ message: err.message || 'Something went wrong.' }); });
-const port=process.env.PORT||4000; mongoose.connect(process.env.MONGODB_URI).then(()=>app.listen(port,()=>console.log(`SiteLedger API listening on ${port}`))).catch(e=>{ console.error('MongoDB connection failed:',e.message); process.exit(1); });
+let databaseConnection;
+export function connectDatabase() {
+  if (mongoose.connection.readyState === 1) return Promise.resolve(mongoose.connection);
+  if (!process.env.MONGODB_URI) return Promise.reject(new Error('MONGODB_URI is not configured.'));
+  if (!databaseConnection) databaseConnection = mongoose.connect(process.env.MONGODB_URI).catch(error => { databaseConnection = null; throw error; });
+  return databaseConnection;
+}
+
+export { app };
+
+if (!process.env.VERCEL) {
+  const port=process.env.PORT||4000;
+  connectDatabase().then(()=>app.listen(port,()=>console.log(`SiteLedger API listening on ${port}`))).catch(e=>{ console.error('MongoDB connection failed:',e.message); process.exit(1); });
+}

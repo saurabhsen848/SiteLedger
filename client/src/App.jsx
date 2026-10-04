@@ -7,7 +7,7 @@ import ResourcesPage from './Resources.jsx';
 import { initialResources } from './resources.js';
 import './enhancements.css';
 
-const API=import.meta.env.VITE_API_URL||'http://localhost:4000/api';
+const API=import.meta.env.VITE_API_URL||(import.meta.env.PROD?'/api':'http://localhost:4000/api');
 const cash=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(n)||0);
 const dateNow=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
 const stages=['Planning','Design','Approval','Site Preparation','Foundation','Structure','Brickwork','Electrical','Plumbing','Plastering','Painting','Interior','Furniture','Final Inspection','Completed'];
