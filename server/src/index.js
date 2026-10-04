@@ -12,7 +12,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { User, Project, Client, Worker, Attendance, Payment, SiteUpdate, Timeline } from './models/index.js';
 
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+if (!process.env.VERCEL) dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
