@@ -4,7 +4,14 @@ module.exports = async function siteLedgerApi(req, res) {
     await connectDatabase();
 
     const requestUrl = req.url || '/';
-    if (!requestUrl.split('?')[0].startsWith('/api/')) {
+    const requestPath = requestUrl.split('?')[0];
+    const rewrittenPath = req.query?.path;
+
+    if (requestPath === '/api/[...path]' && rewrittenPath) {
+      const apiPath = Array.isArray(rewrittenPath) ? rewrittenPath.join('/') : rewrittenPath;
+      const query = requestUrl.includes('?') ? requestUrl.slice(requestUrl.indexOf('?')) : '';
+      req.url = `/api/${apiPath}${query}`;
+    } else if (!requestPath.startsWith('/api/')) {
       req.url = `/api${requestUrl.startsWith('/') ? requestUrl : `/${requestUrl}`}`;
     }
 
